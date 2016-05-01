@@ -134,6 +134,10 @@
       <Project>{F440FBFB-2046-43AA-BF12-BE3EF367DD81}</Project>
       <Name>Sitetree.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SiteTree.Web\SiteTree.Web.csproj">
+      <Project>{bf5eaa70-453b-401e-993b-460cae77ee54}</Project>
+      <Name>SiteTree.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
