@@ -9,8 +9,7 @@ namespace SiteTree.Web.Controllers
 {
     public class DefaultSitetreeController : Controller
     {
-        //[Route("{*catchall}")]
-        public ActionResult Index(string path)
+        public ActionResult Index()
         {
 
             return new ContentResult {Content = "Hello World"};
