@@ -54,15 +54,18 @@
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\PageData.cs" />
+    <Compile Include="Models\SiteDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISiteRepository.cs" />
     <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\SiteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,23 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using Sitetree.DataAccess.Models;
+using Sitetree.DataAccess.Repositories.Interfaces;
 
 namespace Sitetree.DataAccess.Repositories
 {
-    public class PageRepository
+    public class PageRepository : BaseRepository, IPageRepository
     {
-        private readonly IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
-        public List<Page> GetAll()
+        public Page GetByIdWithData(Guid guid)
         {
-            return _db.Query<Page>("SELECT * FROM Pages").ToList();
+            var query = @"select * from Pages p
+            left join PageData d on d.PageId = p.Id
+            where p.Id = @Id";
+
+            return _db.Query<Page, PageData, Page>(
+                query,
+                (page, data) =>
+                {
+                    page.Data.Add(data);
+                    data.Page = page;
+                    return page;
+                },
+                new {Id = guid}
+                ).FirstOrDefault();
         }
     }
 }

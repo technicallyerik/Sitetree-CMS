@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentMigrator;
+﻿using FluentMigrator;
 
 namespace Sitetree.DataAccess.Migrations
 {
@@ -16,6 +11,12 @@ namespace Sitetree.DataAccess.Migrations
                 .WithDescription("Represents an individual site in the CMS.")
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("Name").AsString();
+
+            Create.Table("SiteDomains")
+                .WithDescription("Represents a domain a site is accessable by.")
+                .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
+                .WithColumn("SiteId").AsGuid().ForeignKey("Sites", "Id")
+                .WithColumn("Domain").AsString();
 
             Create.Table("Pages")
                 .WithDescription("Represents a page in a site.")

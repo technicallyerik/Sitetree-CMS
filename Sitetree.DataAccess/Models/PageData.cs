@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sitetree.DataAccess.Models
 {
@@ -11,6 +7,8 @@ namespace Sitetree.DataAccess.Models
         public Guid Id { get; set; }
 
         public Guid PageId { get; set; }
+
+        public Page Page { get; set; }
 
         public string Property { get; set; }
 
