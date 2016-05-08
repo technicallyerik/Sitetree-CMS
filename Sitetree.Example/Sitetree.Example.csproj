@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentMigrator, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentMigrator.1.6.1\lib\40\FluentMigrator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -112,6 +116,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ExampleWebsite.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -130,13 +135,21 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sitetree.DataAccess\Sitetree.DataAccess.csproj">
-      <Project>{F440FBFB-2046-43AA-BF12-BE3EF367DD81}</Project>
-      <Name>Sitetree.DataAccess</Name>
+    <ProjectReference Include="..\Sitetree.Content\Sitetree.Content.csproj">
+      <Project>{fe999c49-8034-4d5a-90f4-a1307d5bfc67}</Project>
+      <Name>Sitetree.Content</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SiteTree.Web\SiteTree.Web.csproj">
-      <Project>{bf5eaa70-453b-401e-993b-460cae77ee54}</Project>
-      <Name>SiteTree.Web</Name>
+    <ProjectReference Include="..\Sitetree.Core\Sitetree.Core.csproj">
+      <Project>{6016fe56-1072-42ed-bcad-cc9757f1184a}</Project>
+      <Name>Sitetree.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sitetree.Media\Sitetree.Media.csproj">
+      <Project>{868f758f-04f0-4b54-a8a2-912d4d83d4da}</Project>
+      <Name>Sitetree.Media</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sitetree.Users\Sitetree.Users.csproj">
+      <Project>{c8b00758-0748-4eec-a7be-d75c1737480d}</Project>
+      <Name>Sitetree.Users</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

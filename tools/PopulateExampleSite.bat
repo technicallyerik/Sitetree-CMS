@@ -1,0 +1,1 @@
+..\packages\FluentMigrator.1.6.1\tools\migrate.exe -c "server=ERIK-WINDEV\SQLEXPRESS2014;uid=Sitetree;pwd=password;Trusted_Connection=yes;database=Sitetree" -db sqlserver2014 -a "..\Sitetree.Example\bin\Sitetree.Example.dll" -t migrate --profile "ExampleWebsite"
