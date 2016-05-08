@@ -5,10 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Sitetree.Content.DataAccess.Repositories;
+using Sitetree.Content.DataAccess.Repositories.Interfaces;
 using Sitetree.Content.Extensions;
 using Sitetree.Content.Models;
-using Sitetree.Core.DataAccess.Repositories;
+using Sitetree.Core.DataAccess.Repositories.Interfaces;
 using Sitetree.Core.Routing.Interfaces;
 
 namespace Sitetree.Content.Routing
@@ -16,6 +16,16 @@ namespace Sitetree.Content.Routing
     [Export(typeof (IRequestHandler))]
     public class ContentRoutingHandler : IRequestHandler
     {
+        private readonly IPageRepository _pageRepository;
+        private readonly ISiteRepository _siteRepository;
+
+        [ImportingConstructor]
+        public ContentRoutingHandler(ISiteRepository siteRepository, IPageRepository pageRepository)
+        {
+            _siteRepository = siteRepository;
+            _pageRepository = pageRepository;
+        }
+
         public int Order => 50;
 
         public bool HandleRequest(HttpContext context)
@@ -45,8 +55,7 @@ namespace Sitetree.Content.Routing
         private Page GetPageFromPathParts(RequestContext requestContext, List<string> pathParts)
         {
             // Get all sites
-            var siteRepo = new SiteRepository(); // TODO: Use DI
-            var sites = siteRepo.GetAllSitesWithDomains();
+            var sites = _siteRepository.GetAllSitesWithDomains();
 
             // Attempt to get site from domain
             var site =
@@ -71,8 +80,7 @@ namespace Sitetree.Content.Routing
             }
 
             // Find page with url
-            var pageRepo = new PageRepository(); // TODO: Use DI
-            var sitePages = pageRepo.GetPagesBySite(site.Id);
+            var sitePages = _pageRepository.GetPagesBySite(site.Id);
             var currentPage = sitePages.GetHomepage();
             var pages = new List<Page> {currentPage};
             while (pages.Any() && pathParts.Any())

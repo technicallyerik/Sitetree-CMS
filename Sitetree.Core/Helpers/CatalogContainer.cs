@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
+using Autofac.Integration.Mvc;
+using MefContrib.Containers;
+using MefContrib.Integration.Autofac;
 
 namespace Sitetree.Core.Helpers
 {
@@ -24,8 +27,12 @@ namespace Sitetree.Core.Helpers
                             Path.Combine(
                                 AppDomain.CurrentDomain.BaseDirectory, "bin")));
 
+                    // Inject Autofac libraries into catalog container
+                    var adapter = new AutofacContainerAdapter(AutofacDependencyResolver.Current.ApplicationContainer);
+                    var provider = new ContainerExportProvider(adapter);
+
                     //Create the CompositionContainer with the parts in the catalog
-                    _singleton = new CompositionContainer(catalog);
+                    _singleton = new CompositionContainer(catalog, provider);
                 }
 
                 return _singleton;
