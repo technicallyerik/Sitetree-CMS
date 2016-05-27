@@ -1,10 +1,11 @@
 version: 0.1.{build}
 before_build:
-- cmd: nuget restore
+  - cmd: nuget restore
 build:
+  project: Sitetree.sln
   verbosity: minimal
 after_test:
-    - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\sitetree-cms\Sitetree.Core.Tests\bin\Debug\Sitetree.Core.Tests.dll -appveyor" -output:.\CodeCoverage.xml
-    - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-    - pip install codecov
-    - codecov -f "CodeCoverage.xml"
+  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\sitetree-cms\Sitetree.Core.Tests\bin\Debug\Sitetree.Core.Tests.dll -appveyor" -output:.\CodeCoverage.xml
+  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+  - pip install codecov
+  - codecov -f "CodeCoverage.xml"
