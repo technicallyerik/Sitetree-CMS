@@ -108,6 +108,7 @@ namespace Sitetree.Content.Routing
 
         private void ExecuteControllerForPage(RequestContext requestContext, Page page)
         {
+            var fullPage = _pageRepository.GetPageByIdWithData(page.Id);
             var pageType = page.Type;
             var controllerFactory = ControllerBuilder.Current.GetControllerFactory();
             IController controller;
@@ -122,6 +123,7 @@ namespace Sitetree.Content.Routing
                 controller = controllerFactory.CreateController(requestContext, defaultControllerName);
                 requestContext.RouteData.Values.Add("controller", defaultControllerName);
             }
+            requestContext.RouteData.Values.Add("page", fullPage);
             requestContext.RouteData.Values.Add("action", "Index");
             controller.Execute(requestContext);
         }
