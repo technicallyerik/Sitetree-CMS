@@ -7,15 +7,21 @@ using MefContrib.Integration.Autofac;
 
 namespace Sitetree.Core.Helpers
 {
+    /// <summary>
+    ///     Injects Autofac libraries into Managed Extensibility Framework
+    /// </summary>
     public class CatalogContainer
     {
-        private static CompositionContainer _singleton;
+        internal static CompositionContainer Singleton;
 
+        /// <summary>
+        ///     Retrieves the singleton current composition container
+        /// </summary>
         public static CompositionContainer Current
         {
             get
             {
-                if (_singleton == null)
+                if (Singleton == null)
                 {
                     // An aggregate catalog that combines multiple catalogs
                     var catalog = new AggregateCatalog();
@@ -32,10 +38,10 @@ namespace Sitetree.Core.Helpers
                     var provider = new ContainerExportProvider(adapter);
 
                     //Create the CompositionContainer with the parts in the catalog
-                    _singleton = new CompositionContainer(catalog, provider);
+                    Singleton = new CompositionContainer(catalog, provider);
                 }
 
-                return _singleton;
+                return Singleton;
             }
         }
     }

@@ -15,7 +15,7 @@ namespace Sitetree.Content.DataAccess.Repositories
             var query = @"select * from Pages p
             where p.SiteId = @Id";
 
-            var pages = _db.Query<Page>(query, new { Id = guid }).ToList();
+            var pages = Db.Query<Page>(query, new { Id = guid }).ToList();
             var pageDictionary = pages.ToDictionary(p => p.Id, p => p);
             foreach (var page in pages)
             {
@@ -35,7 +35,7 @@ namespace Sitetree.Content.DataAccess.Repositories
             left join PageData d on d.PageId = p.Id
             where p.Id = @Id";
 
-            return _db.Query<Page, PageData, Page>(
+            return Db.Query<Page, PageData, Page>(
                 query,
                 (page, data) =>
                 {

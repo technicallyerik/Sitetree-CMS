@@ -7,7 +7,8 @@ namespace Sitetree.Core.Routing
     /// </summary>
     public class SitetreeRoute : Route
     {
-        static readonly SitetreeRoute _singleton = new SitetreeRoute();
+        // ReSharper disable once InconsistentNaming
+        internal static readonly SitetreeRoute _singleton = new SitetreeRoute();
 
         /// <summary>
         ///     Singleton copy of a <see cref="SitetreeRoute"/>.

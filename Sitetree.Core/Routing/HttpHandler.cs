@@ -19,13 +19,13 @@ namespace Sitetree.Core.Routing
         }
 
         [ImportMany(typeof(IRequestHandler))]
-        private IEnumerable<IRequestHandler> requestHandlers;
+        internal IEnumerable<IRequestHandler> RequestHandlers;
 
         public void ProcessRequest(HttpContext context)
         {
-            if (requestHandlers != null)
+            if (RequestHandlers != null)
             {
-                foreach (var requestHandler in requestHandlers.OrderBy(h => h.Order))
+                foreach (var requestHandler in RequestHandlers.OrderBy(h => h.Order))
                 {
                     var result = requestHandler.HandleRequest(context);
 

@@ -6,14 +6,20 @@ using Sitetree.Core.Models;
 
 namespace Sitetree.Core.DataAccess.Repositories
 {
+    /// <summary>
+    ///     Repository to get information about the setup sites
+    /// </summary>
     public class SiteRepository : BaseRepository, ISiteRepository
     {
+        /// <summary>
+        ///     Get all sites with domain information loaded
+        /// </summary>
         public List<Site> GetAllSitesWithDomains()
         {
-            var query = @"select * from Sites s
+            const string query = @"select * from Sites s
                 left join SiteDomains d on d.SiteId = s.Id";
 
-            return _db.Query<Site, SiteDomain, Site>(
+            return Db.Query<Site, SiteDomain, Site>(
                 query,
                 (site, domain) =>
                 {

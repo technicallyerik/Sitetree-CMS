@@ -42,6 +42,10 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MefContrib, Version=1.2.2.0, Culture=neutral, PublicKeyToken=61319b4ffd6fe6d3, processorArchitecture=MSIL">
       <HintPath>..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
       <Private>True</Private>
@@ -120,9 +124,11 @@
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="App_Start\PreApplicationStart.cs" />
     <Compile Include="AutofacModule.cs" />
+    <Compile Include="DataAccess\Services\DatabaseMigrationService.cs" />
     <Compile Include="DataAccess\Repositories\BaseRepository.cs" />
     <Compile Include="DataAccess\Repositories\Interfaces\ISiteRepository.cs" />
     <Compile Include="DataAccess\Repositories\SiteRepository.cs" />
+    <Compile Include="DataAccess\Services\Interfaces\IDatabaseMigrationService.cs" />
     <Compile Include="Helpers\CatalogContainer.cs" />
     <Compile Include="Helpers\SitetreeConfiguration.cs" />
     <Compile Include="Routing\Interfaces\IRequestHandler.cs" />
